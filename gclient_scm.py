@@ -887,6 +887,12 @@ class GitWrapper(SCMWrapper):
       clone_cmd.append('--shared')
     if options.verbose:
       clone_cmd.append('--verbose')
+    # tanjl
+    clone_cmd.extend(['-c', 'pack.windowmemory=10m'])
+    clone_cmd.extend(['-c', 'pack.sizelimit=10m'])
+    clone_cmd.extend(['-c', 'pack.threads=1'])
+    clone_cmd.extend(['-c', 'pack.window=0'])
+    clone_cmd.extend(['-c', 'core.compression=0'])
     clone_cmd.append(url)
     # If the parent directory does not exist, Git clone on Windows will not
     # create it, so we need to do it manually.
@@ -1170,6 +1176,12 @@ class GitWrapper(SCMWrapper):
   def _Fetch(self, options, remote=None, prune=False, quiet=False,
              refspec=None):
     cfg = gclient_utils.DefaultIndexPackConfig(self.url)
+    # tanjl
+    cfg.extend(['-c', 'pack.windowmemory=10m'])
+    cfg.extend(['-c', 'pack.sizelimit=10m'])
+    cfg.extend(['-c', 'pack.threads=1'])
+    cfg.extend(['-c', 'pack.window=0'])
+    cfg.extend(['-c', 'core.compression=0'])
     fetch_cmd =  cfg + [
         'fetch',
         remote or self.remote,
