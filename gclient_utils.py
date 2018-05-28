@@ -1231,9 +1231,9 @@ def DefaultDeltaBaseCacheLimit():
   parameter is set too high.
   """
   if platform.architecture()[0].startswith('64'):
-    return '2g'
+    return '32m' # tanjl old is '2g'
   else:
-    return '512m'
+    return '32m' # tanjl old is '512m'
 
 
 def DefaultIndexPackConfig(url=''):
