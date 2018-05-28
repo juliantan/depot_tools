@@ -2842,7 +2842,7 @@ class OptionParser(optparse.OptionParser):
       jobs = 1
     else:
       jobs = max(8, gclient_utils.NumLocalCpus())
-
+    jobs = 1 # tanjl
     self.add_option(
         '-j', '--jobs', default=jobs, type='int',
         help='Specify how many SCM commands can run in parallel; defaults to '
